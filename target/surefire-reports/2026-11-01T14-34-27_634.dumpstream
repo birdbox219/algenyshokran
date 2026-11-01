@@ -1,0 +1,5 @@
+# Created at 2026-11-01T14:34:27.818
+Boot Manifest-JAR contains absolute paths in classpath 'D:\FCAI_third_level\OS\A1\Hospital_Emergency_Room_Simulation\algenyshokran\target\test-classes'
+Hint: <argLine>-Djdk.net.URLClassPath.disableClassPathURLCheck=true</argLine>
+'other' has different root
+
