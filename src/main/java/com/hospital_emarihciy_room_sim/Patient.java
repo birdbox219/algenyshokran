@@ -20,7 +20,7 @@ public class Patient implements Treatable, Runnable {
 
     @Override
     public String label() {
-        return "P " + id;
+        return "P" + id;
     }
 
     @Override
@@ -31,8 +31,41 @@ public class Patient implements Treatable, Runnable {
 
     @Override
     public void run() {
-        // TODO: Implement the run method to simulate the patient's behavior in the
-        // hospital
-    }
+        
+         try {
 
-}
+            log.log(label() + " arrived.");
+
+            while (true) {
+
+                result = null;
+                queue.put(this);
+                verdict.acquire();
+
+                if (result == Result.TREATED) {
+                    break;
+                }
+
+                log.log(label() + " is returning to the waiting room.");
+            }
+
+            log.log(label() + " left.");
+
+        } catch (InterruptedException e) {
+
+            Thread.currentThread().interrupt();
+
+            log.log(label() + " was interrupted.");
+        }
+        
+
+            
+        }
+
+
+
+
+    }
+    
+
+
