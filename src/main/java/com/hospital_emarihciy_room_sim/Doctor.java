@@ -45,8 +45,15 @@ public class Doctor implements Runnable {
                     System.out.println("Doctor " + id + " begins treating " + patient.getName() + ".");
 
 
-                    int treatmentTime = 1000 + random.nextInt(2000);
-                    Thread.sleep(treatmentTime);
+                    int treatmentTime = 1000 + random.nextInt(2300);
+                    try {
+    
+                        Thread.sleep(treatmentTime);
+                        }        
+                    finally 
+                    {
+                        rooms.release();
+                    }
 
 
                     System.out.println("Doctor " + id + " finished treating " + patient.getName() + ".");
@@ -60,7 +67,7 @@ public class Doctor implements Runnable {
                     System.out.println("Doctor " + id + " could not acquire a treatment room.");
                     System.out.println("Doctor " + id + " is sending " + patient.getName() + " back to the waiting room.");
                     
-                    waitingRoom.enqueue(patient);
+                    patient.setResult(Treatable.Result.SENT_BACK)
                     System.out.println("Doctor " + id + " is now available.");
                 }
 
