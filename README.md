@@ -234,20 +234,13 @@ java -cp target/classes com.hospital_emarihciy_room_sim.Hospital
 
 ### Input
 
-Three integers, one per line (or whitespace-separated):
+Three integers, one per line (or whitespace-separated). The program prints a
+prompt for each value:
 
 ```
-<waiting room capacity>
-<number of doctors>
-<number of patients>
-```
-
-Example:
-
-```
-2
-3
-5
+Waiting room capacity: 2
+Number of doctors: 3
+Number of patients: 5
 ```
 
 `capacity` and `doctors` must be at least 1, and `patients` must be at least 0.

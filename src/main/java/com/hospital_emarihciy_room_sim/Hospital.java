@@ -14,8 +14,16 @@ public class Hospital {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
+        System.out.print("Waiting room capacity: ");
+        System.out.flush();
         int cap = sc.nextInt();
+
+        System.out.print("Number of doctors: ");
+        System.out.flush();
         int nDoctors = sc.nextInt();
+
+        System.out.print("Number of patients: ");
+        System.out.flush();
         int nPatients = sc.nextInt();
 
         System.out.println();
