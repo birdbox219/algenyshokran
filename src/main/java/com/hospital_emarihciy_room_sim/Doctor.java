@@ -4,6 +4,8 @@ import java.util.Random;
 import com.hospital_emarihciy_room_sim.interfaces.*;
 
 public class Doctor implements Runnable {
+    private final int TREATMENT_TIME_MIN = 1000;
+    private final int TREATMENT_TIME_MAX = 3300;
 
     private final int id;
     private final PatientQueue queue;
@@ -23,7 +25,7 @@ public class Doctor implements Runnable {
         while (!Thread.currentThread().isInterrupted()) {
             try {
                 Treatable patient = queue.take();
-                
+
                 if (patient == null) {
                     break;
                 }
@@ -37,7 +39,8 @@ public class Doctor implements Runnable {
                     try {
                         log.log("Doctor " + id + " acquired a treatment room.");
                         log.log("Doctor " + id + " begins treating " + patient.label() + ".");
-                        int treatmentTime = 1000 + random.nextInt(2300);
+                        int treatmentTime = TREATMENT_TIME_MIN
+                                + random.nextInt(TREATMENT_TIME_MAX - TREATMENT_TIME_MIN);
                         Thread.sleep(treatmentTime);
                         log.log("Doctor " + id + " finished treating " + patient.label() + ".");
                     } finally {
@@ -49,7 +52,7 @@ public class Doctor implements Runnable {
                 } else {
                     log.log("Doctor " + id + " could not acquire a treatment room.");
                     log.log("Doctor " + id + " is sending " + patient.label() + " back to the waiting room.");
-                    
+
                     patient.setResult(Treatable.Result.SENT_BACK);
                     log.log("Doctor " + id + " is now available.");
                 }
